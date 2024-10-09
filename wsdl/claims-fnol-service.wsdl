@@ -1,0 +1,45 @@
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://example.com/claims/fnol"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             name="ClaimsFnolService" targetNamespace="http://example.com/claims/fnol">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://example.com/claims/fnol/types" schemaLocation="../xsd/gl-fnol-request.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:import namespace="http://example.com/claims/fnol/claimant" location="claimant.wsdl"/>
+  <wsdl:import namespace="http://example.com/claims/fnol/claimant/org" location="claimant-org.wsdl"/>
+
+  <wsdl:message name="SubmitFnolRequest">
+    <part name="parameters" element="tns:GlFnolRequest"/>
+  </wsdl:message>
+  <wsdl:message name="SubmitFnolResponse">
+    <part name="parameters" element="tns:FnolResponse"/>
+  </wsdl:message>
+
+  <wsdl:portType name="ClaimsFnolPortType">
+    <wsdl:operation name="SubmitFnol">
+      <wsdl:input message="tns:SubmitFnolRequest"/>
+      <wsdl:output message="tns:SubmitFnolResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="ClaimsFnolBinding" type="tns:ClaimsFnolPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SubmitFnol">
+      <soap:operation soapAction="http://example.com/claims/fnol/SubmitFnol"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="ClaimsFnolService">
+    <wsdl:port name="ClaimsFnolPort" binding="tns:ClaimsFnolBinding">
+      <soap:address location="http://example.com/claims/fnol"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

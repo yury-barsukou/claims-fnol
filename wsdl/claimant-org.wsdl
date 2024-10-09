@@ -1,0 +1,10 @@
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://example.com/claims/fnol/claimant/org"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             name="ClaimantOrganizationService" targetNamespace="http://example.com/claims/fnol/claimant/org">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://example.com/claims/fnol/types" schemaLocation="../xsd/claimant-organization.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+</wsdl:definitions>

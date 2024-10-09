@@ -1,0 +1,25 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types"
+            elementFormDefault="qualified">
+
+  <xsd:import namespace="http://example.com/claims/fnol/types" schemaLocation="insured-or-principal.xsd"/>
+  <xsd:import namespace="http://example.com/claims/fnol/types" schemaLocation="claims-occurrence.xsd"/>
+
+  <!-- GlFnolRequest Complex Type Definition -->
+  <xsd:complexType name="GlFnolRequest">
+    <xsd:sequence>
+      <xsd:element name="insuredOrPrincipal" type="tns:InsuredOrPrincipal"/>
+      <xsd:element name="claimsOccurrence" type="tns:ClaimsOccurrence"/>
+      <xsd:element name="claimReportedBy" type="tns:ClaimReportedBy"/>
+      <xsd:element name="claimPrimaryContact" type="tns:ClaimPrimaryContact"/>
+      <xsd:element name="eventDetails" type="tns:GlEventDetails"/>
+      <xsd:element name="claimantIndividuals" type="tns:ClaimantIndividuals" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="claimantOrganizations" type="tns:ClaimantOrganizations" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="firstResponders" type="tns:FirstResponders" minOccurs="0" maxOccurs="2"/>
+      <xsd:element name="otherInvolvedParties" type="tns:OtherInvolvedParties" minOccurs="0" maxOccurs="2"/>
+      <xsd:element name="customAccountLocationDataFields" type="tns:CustomAccountLocationDataFields" minOccurs="0"/>
+      <xsd:element name="customDataFields" type="tns:CustomDataFields" minOccurs="0"/>
+      <xsd:element name="fnolConfirmationRecipients" type="tns:FnolConfirmationRecipients" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

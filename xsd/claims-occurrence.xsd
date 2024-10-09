@@ -1,0 +1,12 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types"
+            elementFormDefault="qualified">
+  <xsd:complexType name="ClaimsOccurrence">
+    <xsd:sequence>
+      <xsd:element name="lossDate" type="xsd:date"/>
+      <xsd:element name="lossTime" type="xsd:time"/>
+      <xsd:element name="insuredReportNumber" type="xsd:string"/>
+      <xsd:element name="lawsuitHasBeenFiledIndicator" type="xsd:boolean" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

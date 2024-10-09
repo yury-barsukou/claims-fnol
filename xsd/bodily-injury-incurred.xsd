@@ -1,0 +1,106 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://example.com/claims/fnol/types">
+    <xs:include schemaLocation="person-name.xsd" />
+    <xs:include schemaLocation="demographics.xsd" />
+    <xs:complexType name="BodilyInjuryIncurred">
+        <xs:sequence>
+
+            <xs:element name="demographics" type="Demographics" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Reference to the Demographics schema.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="cause" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Describes the cause of the bodily injury. Different schemas are used based on the value
+                        selected.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="AircraftRailroadIncidents"/>
+                        <xs:enumeration value="AssaultHarassment"/>
+                        <xs:enumeration value="DefamationLibelSlander"/>
+                        <xs:enumeration value="Discrimination"/>
+                        <xs:enumeration value="ElevatorEscalatorIncidents"/>
+                        <xs:enumeration value="FlammableFabrics"/>
+                        <xs:enumeration value="FoodBorneIllness"/>
+                        <xs:enumeration value="ImpactWithObject"/>
+                        <xs:enumeration value="Other"/>
+                        <xs:enumeration value="PrescriptionError"/>
+                        <xs:enumeration value="ProductTampering"/>
+                        <xs:enumeration value="SlipAndFall"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="causeOtherDescription" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        This field is only expected if the "cause" enum selected was "Other".
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="60"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="severity" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Severity of the injury as defined in the Injury schema's extentOfInjuryCode.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="severityOtherDescription" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Optional field for severity description if 'other' enum was selected for severity.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="initialTreatment" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Initial treatment details as defined in WcEventDetails schema.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="physicianName" type="PersonName" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Reference to the PersonName schema for the treating physician.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="treatmentProviderText" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Additional detail text about the treatment provider.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

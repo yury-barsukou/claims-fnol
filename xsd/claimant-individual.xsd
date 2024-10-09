@@ -1,0 +1,128 @@
+<!--        GlClaimantIndividual:-->
+<!--        type: object-->
+<!--        properties:-->
+<!--        personName:-->
+<!--        $ref: '#/components/schemas/PersonName'-->
+<!--        primaryAddress:-->
+<!--        $ref: '#/components/schemas/PrimaryAddress'-->
+<!--        businessPhone:-->
+<!--        $ref: '#/components/schemas/Phone'-->
+<!--        homePhone:-->
+<!--        $ref: '#/components/schemas/Phone'-->
+<!--        mobilePhone:-->
+<!--        $ref: '#/components/schemas/Phone'-->
+<!--        email:-->
+<!--        $ref: '#/components/schemas/Email'-->
+<!--        bodilyInjuryIncurred:-->
+<!--        $ref: '#/components/schemas/BodilyInjuryIncurred'-->
+<!--        propertyDamageIncurred:-->
+<!--        $ref: '#/components/schemas/PropertyDamageIncurred'-->
+<!--        involvedPartyIdentifier:-->
+<!--        type: string-->
+<!--        description: A unique identifier provided by the customer for a specific party involved in the incident. May be used whenever referencing this party in the customer's claim/reporting system.-->
+<!--        minLength: 1-->
+<!--        maxLength: 40-->
+<!--        involvedPartyAdditionalRemarks:-->
+<!--        type: string-->
+<!--        description: An additional freeform text field to map additional information for which there is not a structured data field.Such information must be relevant to the claim and cannot include NPPI.-->
+<!--        minLength: 2-->
+<!--        maxLength: 1000-->
+<!--        dateOfBirth:-->
+<!--        type: string-->
+<!--        format: date-->
+<!--        description: Birth date of a claimant involved in this incident. Formatted as date yyyy-mm-dd. Must be equal to or less than lossDateTime and equal to or less than current date.-->
+
+<!--//convert  json schema above to XSD below , dont forget about descriptions types and constraints-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types"
+            elementFormDefault="qualified">
+    <xsd:include schemaLocation="person-name.xsd"/>
+    <xsd:include schemaLocation="primary-address.xsd"/>
+    <xsd:include schemaLocation="phone.xsd"/>
+    <xsd:include schemaLocation="email.xsd"/>
+    <xsd:include schemaLocation="bodily-injury-incurred.xsd"/>
+    <xsd:complexType name="ClaimantIndividual">
+        <xsd:sequence>
+            <xsd:element name="personName" type="PersonName" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the PersonName schema</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="primaryAddress" type="PrimaryAddress" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the PrimaryAddress schema</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="businessPhone" type="Phone" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the Phone schema for business phone</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="homePhone" type="Phone" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the Phone schema for home phone</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="mobilePhone" type="Phone" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the Phone schema for mobile phone</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="email" type="Email" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the Email schema</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bodilyInjuryIncurred" type="BodilyInjuryIncurred" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the BodilyInjuryIncurred schema</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+<!--            <xsd:element name="propertyDamageIncurred" type="PropertyDamageIncurred" minOccurs="0" maxOccurs="1">-->
+<!--                <xsd:annotation>-->
+<!--                    <xsd:documentation>Reference to the PropertyDamageIncurred schema</xsd:documentation>-->
+<!--                </xsd:annotation>-->
+<!--            </xsd:element>-->
+            <xsd:element name="involvedPartyIdentifier" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        A unique identifier provided by the customer for a specific party involved in the incident. May
+                        be used whenever referencing this party in the customer's claim/reporting system.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="40"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="involvedPartyAdditionalRemarks" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        An additional freeform text field to map additional information for which there is not a
+                        structured data field. Such information must be relevant to the claim and cannot include NPPI.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="2"/>
+                        <xsd:maxLength value="1000"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="dateOfBirth" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Birth date of a claimant involved in this incident. Formatted as date yyyy-mm-dd. Must be equal
+                        to or less than lossDateTime and equal to or less than current date.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:date"/>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>
+

@@ -1,0 +1,27 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types"
+            elementFormDefault="qualified">
+  <xsd:include schemaLocation="claimant-individual.xsd" />
+  <xsd:include schemaLocation="claimant-organization.xsd" />
+  <xsd:complexType name="FnolRequest">
+    <xsd:sequence>
+      <xsd:element name="Claimant" type="Claimant"/>
+      <xsd:element name="LossDate" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FnolResponse">
+    <xsd:sequence>
+      <xsd:element name="ClaimNumber" type="xsd:string"/>
+      <xsd:element name="Status" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- Placeholder for Claimant complex type -->
+  <xsd:complexType name="Claimant">
+    <xsd:choice>
+      <xsd:element name="Individual" type="ClaimantIndividual"/>
+      <xsd:element name="Organization" type="ClaimantOrganization"/>
+    </xsd:choice>
+  </xsd:complexType>
+</xsd:schema>

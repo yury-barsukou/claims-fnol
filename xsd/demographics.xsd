@@ -1,0 +1,34 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types" elementFormDefault="qualified">
+
+    <xs:complexType name="Demographics">
+        <xs:sequence>
+
+            <xs:element name="dateOfBirth" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Birth date of an individual involved in this incident. Formatted as date yyyy-mm-dd. Must be equal to or less than lossDateTime and equal to or less than current date.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:date"/>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="genderCode" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The biological characteristic (either male or female) of an individual involved in this incident. When the demographics object is populated, this field is required.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Male"/>
+                        <xs:enumeration value="Female"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

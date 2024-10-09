@@ -1,0 +1,36 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types" elementFormDefault="qualified">
+
+    <xs:complexType name="Email">
+        <xs:sequence>
+
+            <xs:element name="emailAddress" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        An email address available for communicating with an involved party regarding this claim.
+                        Format: example@example.com.
+                    </xs:documentation>
+                    <xs:documentation>
+                        Please enter a valid email address in the format 'example@example.com'.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="6"/>
+                        <xs:maxLength value="256"/>
+                        <xs:pattern value="^[a-zA-Z0-9.''!#$%&’*+/=?^_`{|}~-]+@([a-zA-Z0-9-\.]+)\.([a-zA-Z0-9-]{2,})$"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="optInForClaimNotificationsIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        An indicator that it is ok to send notifications regarding this claim to the email address provided.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

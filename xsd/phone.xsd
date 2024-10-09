@@ -1,0 +1,52 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types" elementFormDefault="qualified">
+
+    <xs:complexType name="Phone">
+        <xs:sequence>
+
+            <xs:element name="phoneNumber" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The 1-digit country code, 3-digit city/area code, and a 7-digit telephone number that an involved party can be reached regarding this claim.
+                        Format: +X-XXX-XXXXXXX (Example: +1-555-5555555).
+                    </xs:documentation>
+                    <xs:documentation>
+                        Please enter a valid phone number in the format +X-XXX-XXXXXXX.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="14"/>
+                        <xs:maxLength value="14"/>
+                        <xs:pattern value="^(\+[0-9][-]?)\(?([0-9]{3})\)?[-]?([0-9]{7})$"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="phoneExtension" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The additional digits to be used in conjunction with the telephone number that an involved party can be reached regarding this claim.
+                    </xs:documentation>
+                    <xs:documentation>
+                        phoneExtension must be between 1 and 5 numbers, do not include X.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="^\d{1,5}$"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="optInForTextMessagingIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        An indicator that it is ok to text message the telephone number provided regarding this claim.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

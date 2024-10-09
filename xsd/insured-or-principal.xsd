@@ -1,0 +1,11 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types"
+            elementFormDefault="qualified">
+  <xsd:complexType name="InsuredOrPrincipal">
+    <xsd:sequence>
+      <xsd:element name="accountStakeholderID" type="xsd:string"/>
+      <xsd:element name="lineOfBusinessCode" type="xsd:string"/>
+      <xsd:element name="policyNumber" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

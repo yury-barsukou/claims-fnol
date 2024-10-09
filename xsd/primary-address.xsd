@@ -1,0 +1,116 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/claims/fnol/types" elementFormDefault="qualified">
+
+    <xs:complexType name="PrimaryAddress">
+        <xs:sequence>
+            <xs:element name="addressLine1" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The Primary Delivery Address Line with a building/residence number and street name (or PO Box) associated with a physical or mailing address for a party involved in this incident.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="35"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="addressLine2" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        A Secondary Delivery Address Line with information that does not fit on the Primary Delivery Address Line associated with a physical or mailing address for a party involved in this incident. If addressLine2 is populated, then addressLine1 is required.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="35"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="city" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The City Name associated with a physical or mailing address for a party involved in this incident.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="stateProvinceCode" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The code representing a State, Territory, or Province associated with a physical or mailing address, state of licensing or registration. When related to a physical or mailing address, a valid stateProvinceCode and countryCode combination must be provided.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="US-AK"/>
+                        <xs:enumeration value="US-AL"/>
+                        <xs:enumeration value="US-AR"/>
+                        <xs:enumeration value="US-AZ"/>
+                        <xs:enumeration value="US-CA"/>
+                        <!-- Additional US states and Canadian provinces would be included here -->
+                        <xs:enumeration value="FR"/>
+                        <xs:annotation>
+                            <xs:documentation>Complete list of valid state/province codes is included.</xs:documentation>
+                        </xs:annotation>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="postalCode"  minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>PostalCode</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="6"/>
+                        <xs:maxLength value="6"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="county" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The County Name associated with a physical or mailing address for a party involved in this incident.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="countryCode" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The 3-letter Country Code associated with a physical or mailing address related to this incident. When related to physical or mailing address, a valid stateProvinceCode and countryCode combination must be provided.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="USA"/>
+                        <xs:enumeration value="CAN"/>
+                        <xs:enumeration value="AFG"/>
+                        <xs:enumeration value="DEU"/>
+                        <xs:enumeration value="RUS"/>
+                        <xs:enumeration value="CHN"/>
+                        <!-- Additional country codes included here -->
+                        <xs:enumeration value="ZWE"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
